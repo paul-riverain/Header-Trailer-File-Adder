@@ -14,17 +14,30 @@ It then amalgamates a variety of the created parameters to populate the final fi
 #parameterized values
 
 dbutils.widgets.text("provisioned_schema_name","", "provisioned_schema_name") 
+
 dbutils.widgets.text("output_file_path","", "output_file_path") 
+
 dbutils.widgets.text("business_date","", "business_date")
+
 dbutils.widgets.text("output_ctrl_path","", "output_ctrl_path") 
+
 dbutils.widgets.text("table_name","", "table_name")
+
 dbutils.widgets.text("sub_header","", "sub_header")
+
 dbutils.widgets.text("env", "", "env")
+
 dbutils.widgets.text("freq", "", "freq")
+
 dbutils.widgets.text("filename","","filename")
-dbutils.widgets.text("col_names","", "col_names")   #an array of column names
+
+dbutils.widgets.text("col_names","", "col_names") 
+
 dbutils.widgets.text("subfolder", "", "subfolder")
+
 dbutils.widgets.text("domain","", "domain")
+
+-	- ------------------------------------------- - -------
 
 #begins count selection
 
