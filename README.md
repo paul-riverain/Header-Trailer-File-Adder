@@ -11,7 +11,7 @@ It then amalgamates a variety of the created parameters to populate the final fi
 =======================================================================================
 # Python Pseudo Code 
 
-# parameterized values
+#parameterized values
 dbutils.widgets.text("provisioned_schema_name","", "provisioned_schema_name") 
 dbutils.widgets.text("output_file_path","", "output_file_path") 
 dbutils.widgets.text("business_date","", "business_date")
@@ -25,6 +25,7 @@ dbutils.widgets.text("col_names","", "col_names")   #an array of column names
 dbutils.widgets.text("subfolder", "", "subfolder")
 dbutils.widgets.text("domain","", "domain")
 
+#begins count selection
 countdf = SELECT file count FROM {table_name} WHERE date =  {business_date}
   
 file_count = first count in countdf
@@ -33,17 +34,18 @@ file_count_trailer= file_count+3
 loop_cnt = 1
 cum_sum = 0
 
+ 
 while loop_cnt < file_count:
   cum_sum = cum_sum + loop count
   increments loop_cnt  
 
-# formats & populates variable for trailer tag with counts obtained above
+#formats & populates variable for trailer tag with counts obtained above
 Trailer = f"Trailer~}}|{file_count_trailer}~}}|{cum_sum}"
 
 date = spark.sql("select trimmed timestamp as cur_date")
 cur_date = first cur_date from date
 
-# formats & populates variable for Header tag using parameterized values and variables created above
+#formats & populates variable for Header tag using parameterized values and variables created above
 header = f"File_HDR~}}|{env}~}}|UBS~}}|{freq}~}}|{cur_date}~}}|{business_date}~}}|{filename}~}}|"
 sub_header = f'{sub_header}'
 
@@ -55,13 +57,13 @@ dfpd = Set df to Pandas()
 
 -	- -------------------------------------- -  -------
 
-# formats & populates file name variable with declared & parameterized values
+#formats & populates file name variable with declared & parameterized values
 final_file_name = f"{subfolder}_{domain}_{env}_{filename}_{freq}_{business_date}.txt"
 
 upper_table_name = {table_name} to upper case
 final_trailer_filename = "{upper_table_name} as .txt file"
 
-# sets dfpd as string and applies formatting for the dataframe
+#sets dfpd as string and applies formatting for the dataframe
 myCsv = dfpd.astype(str).apply(lambda x: '~}|'.join(x), axis=1)
 
 #sets dataframe to comma separated format amalgamating required variables and tags
